@@ -3,26 +3,25 @@ on:
   pull_request:
     branches:
       - develop
+    paths: # Recuado para ficar dentro de pull_request
+      - "src/**"
+      - "tests/**"
+      - "package.json"
+      - "package-lock.json"
 
-  paths:
-    - "src/**"
-    - "tests/**"
-    - "package.json"
-    - "package-lock.json"
-
-.env:
-  PORT: ${{vars.PORT}}
-  API_TOKEN: ${{secrets.API_TOKEN}}
+env: # O termo correto é 'env', sem o ponto na frente
+  PORT: ${{ vars.PORT }}
+  API_TOKEN: ${{ secrets.API_TOKEN }}
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4 # Atualizado para v4
 
       - name: Instalar Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4 # Atualizado para v4
         with:
           node-version: "22"
 
@@ -37,17 +36,15 @@ jobs:
     needs: test
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Instalar Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: "22"
 
       - name: Instalar dependencias
         run: npm install
 
-      - name: Roda tests
-        run: npm test
       - name: build
         run: npm run build
