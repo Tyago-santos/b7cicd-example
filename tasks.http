@@ -1,0 +1,12 @@
+### url base
+@base = http://localhost:3000/tasks
+### pegar todas as tasks
+GET {{base}}
+
+
+### criar nova tasks
+POST {{base}}
+Content-Type: "application/application/json"
+{
+
+}
