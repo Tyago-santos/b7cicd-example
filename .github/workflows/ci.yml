@@ -21,3 +21,23 @@ jobs:
 
       - name: Roda tests
         run: npm test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Instalar Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "22"
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Roda tests
+        run: npm test
+      - name: build
+        run: npm run build
