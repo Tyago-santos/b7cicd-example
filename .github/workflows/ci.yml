@@ -4,6 +4,16 @@ on:
     branches:
       - develop
 
+  paths:
+    - "src/**"
+    - "tests/**"
+    - "package.json"
+    - "package-lock.json"
+
+.env:
+  PORT: ${{vars.PORT}}
+  API_TOKEN: ${{secrets.API_TOKEN}}
+
 jobs:
   test:
     runs-on: ubuntu-latest
